@@ -7,7 +7,38 @@ newDeckOrder = ['A♠', '2♠', '3♠', '4♠', '5♠', '6♠', '7♠', '8♠', 
         'K♣', 'Q♣', 'J♣', '10♣', '9♣', '8♣', '7♣', '6♣', '5♣', '4♣', '3♣', '2♣', 'A♣',
         'K♥', 'Q♥', 'J♥', '10♥', '9♥', '8♥', '7♥', '6♥', '5♥', '4♥', '3♥', '2♥', 'A♥']
 
+def isNDO(d):
+    return d==newDeckOrder()
+
+def outFaro(d):
+    if len(d) == 52 :
+        p1 = d[:26]
+        p2 = d[26:]
+
+        newD = []
+
+        for i in range(26):
+            newD.append(p1[i])
+            newD.append(p2[i])
+        
+        return newD
+
+def inFaro(d):
+    if len(d) ==52:
+        p1 = d[:26]
+        p2 = d[26:]
+
+        newD = []
+
+        for i in range(26):
+            newD.append(p2[i])
+            newD.append(p1[i])
+        
+        return newD
+
 deck = newDeckOrder
+
+
 
 @app.route("/")
 def index():
