@@ -1,4 +1,4 @@
-from flask import Flask, render_template
+from flask import Flask, render_template, request
 
 app = Flask(__name__)
 
@@ -36,11 +36,41 @@ def inFaro(d):
         
         return newD
 
-deck = newDeckOrder
+
 
 
 
 @app.route("/")
 def index():
-    return render_template("index.html", isNDO = (deck==newDeckOrder),
-        line1=str(deck[:13]), line2=str(deck[13:26]), line3=str(deck[26:39]), line4=str(deck[39:]))
+    deck = newDeckOrder
+    return render_template("index.html", isNDO = (deck==newDeckOrder),displayDeck=str(deck)[1:-1].replace("'",''))
+
+@app.route("/deckOrder", methods=["POST"])
+def deckOrder():
+    shuffleType = request.form["shuffleType"]
+    print(shuffleType)
+    shuffleCount = request.form.get("shuffleCount")
+    output = ""
+    notes= ""
+    if (shuffleCount):
+        shuffleCount = int(shuffleCount)
+        deck = newDeckOrder
+        if (shuffleType == "Out Faro"):
+            if shuffleCount > 8: 
+                shuffleCount = shuffleCount % 8
+                notes = "8 out-faros results in original deck order. Displaying the last "+ str(shuffleCount) + " shuffles."
+            for x in range(shuffleCount):
+                output += "Out Faro "+ str(x+1) + ":" + "<br>"
+                deck = outFaro(deck)
+                output += str(deck)[1:-1].replace("'",'') + "<br><br>"
+        else: #in faro
+            if shuffleCount >52: 
+                shuffleCount = shuffleCount % 52
+                notes = "52 in-faros results in original deck order. Displaying the last " + str(shuffleCount) + " shuffles."
+            for x in range(shuffleCount):
+                output += "In Faro "+ str(x+1) + ":" + "<br>"
+                deck = inFaro(deck)
+                output += str(deck)[1:-1].replace("'",'') + "<br><br>"
+        
+        return render_template("deckOrder.html", shuffleCount=shuffleCount, shuffleType=shuffleType, output=output, notes=notes)
+
