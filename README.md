@@ -6,4 +6,4 @@ To do:
 2. Make diamonds show up red ♦️ (Why does it work for hearts but not diamonds?????)
 3. Find a way to show centre card
 4. Error handling
-5. Indicate when deck order is starting order
+5. Indicate when deck order is back to starting order
