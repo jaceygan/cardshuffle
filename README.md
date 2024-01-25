@@ -1,5 +1,5 @@
 # cardshuffle
-Show card deck order after each shuffle
+Show card deck order after each shuffle. Currently supports in and out farro shuffles.
 
 To do:
 1. Allow user defined starting order
