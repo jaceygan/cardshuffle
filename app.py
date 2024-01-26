@@ -2,10 +2,24 @@ from flask import Flask, render_template, request
 
 app = Flask(__name__)
 
-newDeckOrder = ['A♠', '2♠', '3♠', '4♠', '5♠', '6♠', '7♠', '8♠', '9♠', '10♠', 'J♠', 'Q♠', 'K♠',
-        'A♦️', '2♦️', '3♦️', '4♦️', '5♦️', '6♦️', '7♦️', '8♦️', '9♦️', '10♦️', 'J♦️', 'Q♦️', 'K♦️',
+redD = u'/U+2666'
+
+newDeckOrder = ["A♠", "2♠", "3♠", "4♠", "5♠", "6♠", "7♠", "8♠", "9♠", "10♠", "J♠", "Q♠", "K♠",
+        "A♦️", "2♦️", "3♦️", "4♦️", "5♦️", "6♦️", "7♦️", "8♦️", "9♦️", "10♦️", "J♦️", "Q♦️", "K♦️",
         'K♣', 'Q♣', 'J♣', '10♣', '9♣', '8♣', '7♣', '6♣', '5♣', '4♣', '3♣', '2♣', 'A♣',
         'K❤️', 'Q❤️', 'J❤️', '10❤️', '9❤️', '8❤️', '7❤️', '6❤️', '5❤️', '4❤️', '3❤️', '2❤️', 'A❤️']
+
+def formatDeck(d):
+    linesize = int((len(d))/4)
+
+    output = str(d[:linesize])[1:-1]+"<br>"
+
+    for x in range(3):
+        output += str(d[linesize:linesize+13])[1:-1]+"<br>"
+        linesize+=13
+
+    return output.replace("'","")
+
 
 def isNDO(d):
     return d==newDeckOrder()
@@ -43,7 +57,7 @@ def inFaro(d):
 @app.route("/")
 def index():
     deck = newDeckOrder
-    return render_template("index.html", isNDO = (deck==newDeckOrder),displayDeck=str(deck)[1:-1].replace("'",''))
+    return render_template("index.html", isNDO = (deck==newDeckOrder),displayDeck=formatDeck(deck))
 
 @app.route("/deckOrder", methods=["POST"])
 def deckOrder():
@@ -62,7 +76,7 @@ def deckOrder():
             for x in range(shuffleCount):
                 output += "Out Faro "+ str(x+1) + ":" + "<br>"
                 deck = outFaro(deck)
-                output += str(deck)[1:-1].replace("'",'') + "<br><br>"
+                output += formatDeck(deck) + "<br><br>"
         else: #in faro
             if shuffleCount >52: 
                 shuffleCount = shuffleCount % 52
@@ -70,7 +84,7 @@ def deckOrder():
             for x in range(shuffleCount):
                 output += "In Faro "+ str(x+1) + ":" + "<br>"
                 deck = inFaro(deck)
-                output += str(deck)[1:-1].replace("'",'') + "<br><br>"
+                output += formatDeck(deck) + "<br><br>"
         
         return render_template("deckOrder.html", shuffleCount=shuffleCount, shuffleType=shuffleType, output=output, notes=notes)
 
