@@ -11,19 +11,21 @@ newDeckOrder = ["A♠", "2♠", "3♠", "4♠", "5♠", "6♠", "7♠", "8♠", 
 
 def formatDeck(d):
     linesize = int((len(d))/4)
+    start = 0
+    end = linesize
 
-    output = str(d[:linesize])[1:-1]+",<br>"
-
-    for x in range(3):
-        output += str(d[linesize:linesize+13])[1:-1]+",<br>"
-        linesize+=13
+    output = ""
+    for x in range(1,5):
+        end = linesize * x
+        output += str(d[start:end])[1:-1]+",<br>"
+        start = end
 
     output = output[:-5] # remove the last comma and line break
     return (output.replace("'",""))
 
 
 def isNDO(d):
-    return d==newDeckOrder()
+    return d==newDeckOrder
 
 def outFaro(d):
     if len(d) == 52 :
@@ -78,6 +80,7 @@ def deckOrder():
             for x in range(shuffleCount):
                 output += "Out Faro "+ str(x+1) + ":" + "<br>"
                 deck = outFaro(deck)
+                if (isNDO(deck)): output+= "*New Deck Order*"+"<br>"
                 output += formatDeck(deck) + "<br><br>"
         else: #in faro
             if shuffleCount >52: 
@@ -86,6 +89,7 @@ def deckOrder():
             for x in range(shuffleCount):
                 output += "In Faro "+ str(x+1) + ":" + "<br>"
                 deck = inFaro(deck)
+                if (isNDO(deck)): output+= "*New Deck Order*"+"<br>"
                 output += formatDeck(deck) + "<br><br>"
         
         return render_template("deckOrder.html", shuffleCount=shuffleCount, shuffleType=shuffleType, output=output, notes=notes)
