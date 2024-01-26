@@ -1,6 +1,8 @@
 # cardshuffle
 Show card deck order after each shuffle. Currently supports in and out farro shuffles.
 
+This is running on https://lognloops.com if you wanna check it out.
+
 To do:
 1. Allow user defined starting order and allow custom number of cards
 2. Make diamonds show up red ♦️ on Chrome on Mac (Shows up fine for Chrome on Android)
