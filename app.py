@@ -12,13 +12,14 @@ newDeckOrder = ["A♠", "2♠", "3♠", "4♠", "5♠", "6♠", "7♠", "8♠", 
 def formatDeck(d):
     linesize = int((len(d))/4)
 
-    output = str(d[:linesize])[1:-1]+"<br>"
+    output = str(d[:linesize])[1:-1]+",<br>"
 
     for x in range(3):
-        output += str(d[linesize:linesize+13])[1:-1]+"<br>"
+        output += str(d[linesize:linesize+13])[1:-1]+",<br>"
         linesize+=13
 
-    return output.replace("'","")
+    output = output[:-5] # remove the last comma and line break
+    return (output.replace("'",""))
 
 
 def isNDO(d):
