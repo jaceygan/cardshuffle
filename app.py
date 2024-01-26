@@ -89,3 +89,5 @@ def deckOrder():
         
         return render_template("deckOrder.html", shuffleCount=shuffleCount, shuffleType=shuffleType, output=output, notes=notes)
 
+if __name__ == "__main__":
+    app.run(host="0.0.0.0", port=5000)
