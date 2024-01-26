@@ -63,8 +63,9 @@ def index():
 @app.route("/deckOrder", methods=["POST"])
 def deckOrder():
     shuffleType = request.form["shuffleType"]
-    print(shuffleType)
+    
     shuffleCount = request.form.get("shuffleCount")
+    print(shuffleCount,shuffleType)
     output = ""
     notes= ""
     if (shuffleCount):
