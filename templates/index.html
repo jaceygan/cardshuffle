@@ -14,10 +14,10 @@
         <br>
         <h4>Current Deck Order: {% if isNDO %} *New Deck Order* {% endif%}</h4>
         <br>
-        <h3>{% autoescape false %}
+        <h4>{% autoescape false %}
             {{displayDeck}}
             {% endautoescape %}
-        </h3>
+        </h4>
         <br>
         <br>
         <form action="/deckOrder" method="POST">
