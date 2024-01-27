@@ -1,4 +1,4 @@
-from flask import Flask, render_template, request
+from flask import Flask, render_template, request, redirect, url_for
 
 app = Flask(__name__)
 
@@ -53,14 +53,15 @@ def inFaro(d):
         
         return newD
 
-
-
+@app.route("/cardshuffle")
+def cardshuffle():
+    deck = newDeckOrder
+    return render_template("index.html", isNDO = (deck==newDeckOrder),displayDeck=formatDeck(deck))
 
 
 @app.route("/")
 def index():
-    deck = newDeckOrder
-    return render_template("index.html", isNDO = (deck==newDeckOrder),displayDeck=formatDeck(deck))
+    return redirect(url_for("cardshuffle"))
 
 @app.route("/deckOrder", methods=["POST"])
 def deckOrder():
