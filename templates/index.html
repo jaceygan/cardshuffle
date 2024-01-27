@@ -12,11 +12,14 @@
 <body>
     <div class="container" style="width:85%">
         <br>
-        <h4>Current Deck Order: {% if isNDO %} *New Deck Order* {% endif%}</h4>
-        <br>
-        <h4>{% autoescape false %}
+
+        <h4>Current Deck Order: {% if isNDO %} *New Deck Order* {% endif%}
+            <br>
+            <br>
+            {% autoescape false %}
             {{displayDeck}}
             {% endautoescape %}
+
         </h4>
         <br>
         <br>
