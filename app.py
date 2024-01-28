@@ -58,9 +58,9 @@ def deckOrder():
         if shuffleCount > 0 :
             output = ""
             notes= ""
-            
             deck = newDeckOrder
-            if (shuffleType == "Out Faro"):
+
+            if (shuffleType == "Out Faro"): #TODO: Refactor this monstrosity
                 if shuffleCount > 8: 
                     shuffleCount = shuffleCount % 8
                     notes = "8 out faros results in original deck order. Displaying the last "+ str(shuffleCount) + " shuffles."
