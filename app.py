@@ -5,7 +5,11 @@ app = Flask(__name__)
 
 @app.route("/")
 def index():
-    return redirect(url_for("cardshuffle"))
+    return render_template("index.html")
+
+@app.route("/koboupdates")
+def koboupdates():
+    return render_template("koboupdates.html")
 
 @app.route("/cardshuffle")
 def cardshuffle():
@@ -23,7 +27,7 @@ def deckOrder():
         if shuffleCount > 0 :
             output = ""
             notes= ""
-            deck = newDeckOrder
+            deck = newDeckOrder()
 
             if (shuffleType == "Out Faro"): #TODO: Refactor this monstrosity. move to cardshuffle.py
                 if shuffleCount > 8: 

@@ -17,10 +17,10 @@ def formatDeck(d):
     return (output.replace("'",""))
 
 def isNDO(d):
-    return d==newDeckOrder
+    return d==newDeckOrder()
 
 def faroShuffle(d, type="in"):
-    half = int(len(d)/2) #TODO: need to handle odd numbers
+    half = int(len(d)/2) #TODO: need to handle odd numbers if gonna allow user defined starting order
     p1 = d[:half]
     p2 = d[half:]
     newD = []
