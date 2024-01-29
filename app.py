@@ -45,7 +45,7 @@ def index():
 @app.route("/cardshuffle")
 def cardshuffle():
     deck = newDeckOrder
-    return render_template("index.html", isNDO = isNDO(deck),displayDeck=formatDeck(deck))
+    return render_template("cardshuffle.html", isNDO = isNDO(deck),displayDeck=formatDeck(deck))
 
 @app.route("/deckOrder", methods=["POST"])
 def deckOrder():
