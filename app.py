@@ -1,5 +1,6 @@
 from flask import Flask, render_template, request, redirect, url_for
 from cardshuffle import *
+from koboupdates import *
 
 app = Flask(__name__)
 
@@ -7,9 +8,16 @@ app = Flask(__name__)
 def index():
     return render_template("index.html")
 
-@app.route("/koboupdates")
+@app.route("/koboupdates", methods=["GET","POST"])
 def koboupdates():
-    return render_template("koboupdates.html")
+    if request.method == "GET":
+        return render_template("koboupdates.html", addedmessage=False)
+    else:
+        koboemail=request.form["koboemail"].strip()
+        if (koboemail != "") and (subcribeToSNS(koboemail)):
+            return render_template("koboupdates.html", addedmessage=True, koboemail=koboemail)
+        else:
+            return render_template("koboupdates.html", addedmessage=False)
 
 @app.route("/cardshuffle")
 def cardshuffle():
