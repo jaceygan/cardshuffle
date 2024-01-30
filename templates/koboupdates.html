@@ -1,7 +1,7 @@
 {% extends 'base.html' %}
 
 {% block title %}
-LogNLoops Card Shuffle
+Kobo Updates
 {% endblock %}
 
 {% block content %}
@@ -9,9 +9,29 @@ LogNLoops Card Shuffle
     <br>
     <h4>Kobo Updates</h4>
     <br>
-    <p>Coming soon!</p>
+    <p>Enter your email below to get notified when Kobo update their eReader prices or add/ remove an eReader.
+        Refer to screenshots for sample emails.
+    </p>
+    <form action="/koboupdates" method="POST">
+        <input type="email" id="koboemail" name="koboemail" placeholder="Enter email address" maxlength="40" size="35"
+            autofocus>&nbsp;&nbsp;
+        <button class="btn btn-outline-primary" type="submit" style="width:100px">Submit</button>
+    </form>
     <br>
-    <p align="right"><small>Source on <a href="https://github.com/jaceygan/kobodeviceupdates">Github</a></small></p>
+    <div class="align-centre">
+
+        <img src="{{url_for('static', filename='kobonewdeviceemail.png')}}" alt="New Device Added Notification"
+            style="width:400px">
+
+        <img src="{{url_for('static', filename='kobopricechangeemail.png')}}" alt="Price Change Notification"
+            style="width:400px">
+    </div>
+    <br>
+
+    <p>For the more techy folks, you can get the source to run a local version on your own server from my
+        <a href="https://github.com/jaceygan/kobodeviceupdates">Github Repo</a>. It uses slack notification instead of
+        email.
+    </p>
 
 </div>
 
