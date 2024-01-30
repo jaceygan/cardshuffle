@@ -7,10 +7,6 @@ def subcribeToSNS(email):
     secretkey = os.getenv('AWS_SECRET_KEY')
     topic_arn = os.getenv('AWS_TOPIC_ARN')
 
-    print(accesskey)
-    print(secretkey)
-    print(topic_arn)
-
     sns = boto3.client('sns',
                    aws_access_key_id=accesskey,
                    aws_secret_access_key = secretkey,
