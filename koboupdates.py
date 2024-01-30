@@ -4,11 +4,11 @@ import os
 def subcribeToSNS(email):
 
     sns = boto3.client('sns',
-                   aws_access_key_id=os.environ.get('AWS_ACCESS_KEY'),
-                   aws_secret_access_key = os.environ.get('AWS_SECRET_KEY'),
+                   aws_access_key_id=os.getenv('AWS_ACCESS_KEY'),
+                   aws_secret_access_key = os.getenv('AWS_SECRET_KEY'),
                    region_name="us-east-2")
     
-    topic_arn = os.environ.get('AWS_TOPIC_ARN')
+    topic_arn = os.getenv('AWS_TOPIC_ARN')
 
     response = sns.subscribe(TopicArn=topic_arn,
                             Protocol='email', Endpoint=email)
