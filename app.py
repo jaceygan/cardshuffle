@@ -1,6 +1,8 @@
 from flask import Flask, render_template, request, redirect, url_for
 from cardshuffle import *
 from koboupdates import *
+import glob
+import os
 
 app = Flask(__name__)
 
