@@ -3,8 +3,15 @@ from cardshuffle import *
 from koboupdates import *
 import glob
 import os
+import datetime
 
 app = Flask(__name__)
+
+def getLastModDate():
+    fileList=glob.glob("**/*") #get all files in current and sub directories 
+    latestFile = max(lf, key=os.path.getmtime)
+    timestamp = os.path.getmtime(latestFile)
+    return str(datetime.datetime.fromtimestamp(timestamp))[:16]
 
 @app.route("/")
 def index():
