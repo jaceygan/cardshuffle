@@ -4,26 +4,21 @@
 Card Shuffle
 {% endblock %}
 
-
 {% block content %}
 
+<h4>Card Shuffle</h4>
+<br>
+<h5><em>{{ notes }}</em></h4>
+    <h5>Deck order for {{ shuffleCount }} {{shuffleType}} shuffles</h4>
+
+        <br>
+
+        {% autoescape false %}
+        <h5>{{output}}</h5>
+        {% endautoescape %}
+        <br>
+        <br>
+        <p align="right"><small>Source on <a href="https://github.com/jaceygan/cardshuffle">Github</a></small></p>
 
 
-<div class="container" style="width:85%">
-    <br>
-    <h4>Card Shuffle</h4>
-    <br>
-    <h5><em>{{ notes }}</em></h4>
-        <h5>Deck order for {{ shuffleCount }} {{shuffleType}} shuffles</h4>
-
-            <br>
-
-            {% autoescape false %}
-            <h5>{{output}}</h5>
-            {% endautoescape %}
-            <br>
-            <br>
-            <p align="right"><small>Source on <a href="https://github.com/jaceygan/cardshuffle">Github</a></small></p>
-</div>
-
-{% endblock %}
+        {% endblock %}

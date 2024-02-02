@@ -6,35 +6,33 @@ Card Shuffle
 
 {% block content %}
 
-<div class="container" style="width:85%">
-    <br>
-    <h4>Card Shuffle</h4>
-    <br>
-    <h5>Current Deck Order: <br>
-        <em> {% if isNDO %} *New Deck Order*{% endif%}</em>
-        <br>
-        <br>
-        {% autoescape false %}
-        {{displayDeck}}
-        {% endautoescape %}
 
-    </h5>
+<h4>Card Shuffle</h4>
+<br>
+<h5>Current Deck Order: <br>
+    <em> {% if isNDO %} *New Deck Order*{% endif%}</em>
     <br>
     <br>
-    <form action="/cardshuffle" method="POST">
+    {% autoescape false %}
+    {{displayDeck}}
+    {% endautoescape %}
 
-        <input type="radio" name="shuffleType" id="inFaro" value="In Faro">&nbsp;In Faro</input><br>
-        <input type="radio" name="shuffleType" id="outFaro" value="Out Faro" checked>&nbsp;Out Faro</input>
-        <br>
-        <br>
-        <input type="text" id="shuffleCount" name="shuffleCount" value=8 maxlength="2" size="3"> shuffles
-        <br>
-        <br>
-        <button class="btn btn-outline-primary" type="submit" autofocus style="width:100px">Submit</button>
-    </form>
+</h5>
+<br>
+<br>
+<form action="/cardshuffle" method="POST">
+
+    <input type="radio" name="shuffleType" id="inFaro" value="In Faro">&nbsp;In Faro</input><br>
+    <input type="radio" name="shuffleType" id="outFaro" value="Out Faro" checked>&nbsp;Out Faro</input>
     <br>
     <br>
-    <p align="right"><small>Source on <a href="https://github.com/jaceygan/cardshuffle">Github</a></small></p>
-</div>
+    <input type="text" id="shuffleCount" name="shuffleCount" value=8 maxlength="2" size="3"> shuffles
+    <br>
+    <br>
+    <button class="btn btn-outline-primary" type="submit" autofocus style="width:100px">Submit</button>
+</form>
+<br>
+<br>
+<p align="right"><small>Source on <a href="https://github.com/jaceygan/cardshuffle">Github</a></small></p>
 
 {% endblock %}
