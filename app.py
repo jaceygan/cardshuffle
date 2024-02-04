@@ -9,13 +9,13 @@ app = Flask(__name__)
 
 def getLastModDate():
     fileList=glob.glob("**/*") #get all files in current and sub directories 
-    latestFile = max(lf, key=os.path.getmtime)
+    latestFile = max(fileList, key=os.path.getmtime)
     timestamp = os.path.getmtime(latestFile)
     return str(datetime.datetime.fromtimestamp(timestamp))[:16]
 
 @app.route("/")
 def index():
-    return render_template("index.html")
+    return render_template("index.html", lastModDate=getLastModDate())
 
 @app.route("/koboupdates", methods=["GET","POST"])
 def koboupdates():
