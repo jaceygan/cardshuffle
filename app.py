@@ -29,6 +29,14 @@ def koboupdates():
         else:
             return render_template("koboupdates.html", addedmessage=False)
 
+@app.route("/slacalc", methods=["GET","POST"])
+def koboupdates():
+    if request.method == "GET":
+        return render_template("slacalc.html", sla="99.9")
+    else: #POST
+        newsla= request.form["sla"]
+        return render_template("slacalc.html", sla=newsla)
+
 @app.route("/cardshuffle",methods=["GET","POST"])
 def cardshuffle():
     deck = newDeckOrder()
