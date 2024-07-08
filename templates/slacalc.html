@@ -1,19 +1,16 @@
 {% extends 'base.html' %}
 
 {% block title %}
-Kobo Updates
+SLA Calculator
 {% endblock %}
 
 {% block content %}
-<h4>Kobo Updates</h4>
+<h4>SLA Calculator</h4>
 <br>
-<p>Enter your email below to get notified when <a href="https://us.kobobooks.com/collections/ereaders"
-        target="_blank">Kobo</a> updates their eReader prices or add/ remove an eReader.
-    Refer to screenshots for sample emails. You can also unsubscribe anytime.
+<p>Enter SLA
 </p>
-<form action="/koboupdates" method="POST">
-    <input type="email" id="koboemail" name="koboemail" placeholder="Enter email address" maxlength="320" size="30"
-        autofocus>&nbsp;&nbsp;
+<form action="/slacalc" method="POST">
+    <input type="email" id="newsla" name="newsla" placeholder="New SLA" maxlength="32" size="30" autofocus>&nbsp;&nbsp;
     <button class="btn btn-outline-primary" type="submit" style="width:100px">Subscribe</button>
 </form>
 <em> {% if addedmessage %} Subscribed {{koboemail}} to Kobo Notifications! {% endif%}</em>
@@ -21,21 +18,7 @@ Kobo Updates
 <br>
 <div class="align-centre">
 
-    <img src="{{url_for('static', filename='kobonewdeviceemail.png')}}" alt="New Device Added Notification"
-        style="width:400px">
-
-    <img src="{{url_for('static', filename='kobopricechangeemail.png')}}" alt="Price Change Notification"
-        style="width:400px">
-    <br>
-    <br>
-    <img src="{{url_for('static', filename='koboremovedeviceemail.png')}}" alt="Price Change Notification"
-        style="width:400px">
 </div>
 <br>
-
-<p>For the more techy folks, you can get the source to run a local version on your own server from my
-    <a href="https://github.com/jaceygan/kobodeviceupdates">Github Repo</a>. It uses slack for notifications instead of
-    email.
-</p>
 
 {% endblock %}
