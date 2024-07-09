@@ -1,7 +1,8 @@
 # constant
 SECINYEAR = 31536000
-
-
+SECINMIN = 60
+SECINHOUR = 3600
+SECINDAY = 86400
 
 def downtime(sla):
     yeardowntime = (100.0-sla) * SECINYEAR
@@ -12,7 +13,9 @@ def downtime(sla):
     return [pretty(yeardowntime), pretty(monthdowntime), pretty(weekdowntime), pretty(daydowntime)]
 
 def pretty(t): # work on this
-    return None
+    if t > SECINDAY:
+        return "xday"
+
 
 def convertToMin(sec):
     if sec>60:
