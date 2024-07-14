@@ -1,6 +1,4 @@
 from dateutil.relativedelta import relativedelta
-
-
 # constant
 SECINYEAR = 31536000
 SECINMIN = 60
