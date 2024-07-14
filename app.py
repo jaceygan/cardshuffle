@@ -1,6 +1,7 @@
 from flask import Flask, render_template, request, redirect, url_for
 from cardshuffle import *
 from koboupdates import *
+from calcsla import *
 import glob
 import os
 import datetime
@@ -29,13 +30,13 @@ def koboupdates():
         else:
             return render_template("koboupdates.html", addedmessage=False)
 
-@app.route("/slacalc", methods=["GET","POST"])
-def slacalc():
+@app.route("/calcsla", methods=["GET","POST"])
+def calcsla():
     if request.method == "GET":
-        return render_template("slacalc.html", sla="99.9")
+        return render_template("calcsla.html", sla="99.9")
     else: #POST
         newsla= request.form["sla"]
-        return render_template("slacalc.html", sla=newsla)
+        return render_template("calcsla.html", sla=newsla)
 
 @app.route("/cardshuffle",methods=["GET","POST"])
 def cardshuffle():
