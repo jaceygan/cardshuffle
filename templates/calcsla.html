@@ -7,14 +7,17 @@ SLA Calculator
 {% block content %}
 <h4>SLA Calculator</h4>
 <br>
-<p>WORK IN PROGRESS!!!!!
-    Enter SLA
+<p>
+    Enter SLA:
 </p>
-<form action="/slacalc" method="POST">
-    <input type="email" id="newsla" name="newsla" placeholder="New SLA" maxlength="32" size="30" autofocus>&nbsp;&nbsp;
+<form action="/calcsla" method="POST">
+    <input type="text" id="newsla" name="newsla" value="{{slaval}}" maxlength="8" size="10" autofocus>%&nbsp;&nbsp;
     <button class="btn btn-outline-primary" type="submit" style="width:100px">Calculate</button>
 </form>
-<em> {% if addedmessage %} Subscribed {{koboemail}} to Kobo Notifications! {% endif%}</em>
+<br>
+{% autoescape false %}
+{{downtime}}
+{% endautoescape %}
 <br>
 <br>
 <div class="align-centre">

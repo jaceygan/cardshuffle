@@ -33,10 +33,14 @@ def koboupdates():
 @app.route("/calcsla", methods=["GET","POST"])
 def calcsla():
     if request.method == "GET":
-        return render_template("calcsla.html", sla="99.9")
+        return render_template("calcsla.html", downtime = "", slaval = "99.7")
     else: #POST
-        newsla= request.form["sla"]
-        return render_template("calcsla.html", sla=newsla)
+        newsla = request.form.get("newsla")
+        try: 
+            newslafloat = float(newsla)
+            return render_template("calcsla.html", downtime = downtime(newslafloat), slaval = newsla)
+        except ValueError:
+            return render_template("calcsla.html", downtime = "", slaval = "99.7")
 
 @app.route("/cardshuffle",methods=["GET","POST"])
 def cardshuffle():

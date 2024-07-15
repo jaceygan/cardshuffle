@@ -2,7 +2,6 @@ from dateutil.relativedelta import relativedelta
 # constant
 SECINYEAR = 31536000
 
-
 def downtime(sla):
     yeardowntime = (1-(sla*0.01)) * SECINYEAR
 
@@ -12,7 +11,11 @@ def downtime(sla):
     results["Weekly Downtime"] = pretty(yeardowntime/52)
     results["Daily Downtime"] = pretty(yeardowntime/365)
 
-    return results
+    s = ""
+    for k, v in results.items():
+        s+= k+": "+v+"<br>"
+
+    return s
 
 def pretty(t):
     units = ['days', 'hours', 'minutes', 'seconds']
@@ -24,5 +27,4 @@ def pretty(t):
         s+= ea+" "
 
     return s[:-1]
-   
-print(downtime(99.7))
+
